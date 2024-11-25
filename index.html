@@ -6,7 +6,6 @@
   <title>How to Play Spikeball</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom CSS -->
   <style>
     /* Chatbot container styles */
     .chatbot-container {
@@ -74,97 +73,6 @@
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="images/spikeball logo.jpg" alt="Spikeball Logo" style="height: 60px; width: 60px;">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="how-to-assemble.html">How to Assemble</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="rulesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Rules
-            </a>
-            <ul class="dropdown-menu bg-dark border-0" aria-labelledby="rulesDropdown">
-              <li><a class="dropdown-item text-light" href="rules.html">Rules Overview</a></li>
-              <li class="dropdown-submenu">
-                <a class="dropdown-item dropdown-toggle text-light" href="#">Subrules</a>
-                <ul class="dropdown-menu bg-dark border-0">
-                  <li><a class="dropdown-item text-light" href="serve-rules.html">Serve Rules</a></li>
-                  <li><a class="dropdown-item text-light" href="rally-rules.html">Rally Rules</a></li>
-                  <li><a class="dropdown-item text-light" href="net-rules.html">Net Rules</a></li>
-                  <li><a class="dropdown-item text-light" href="point-system.html">Point System</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact Page</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Header Section -->
-  <header class="text-center py-4">
-    <h1>How to Play Spikeball</h1>
-  </header>
-
-  <!-- Overview Section -->
-  <section class="container text-center my-4">
-    <h2>What is Spikeball?</h2>
-    <p>Spikeball is a fast-paced, action-packed sport that combines elements of volleyball and foursquare. It is played with a small circular net, similar to a trampoline, placed on the ground.</p>
-    <p>The objective of the game is to spike the ball onto the net in such a way that the opposing team cannot return it within three touches.</p>
-    <a href="https://spikeball.com/" class="btn btn-primary mt-3">Start Playing TODAY!</a>
-  </section>
-
-  <!-- Cards Section -->
-  <section class="container my-5">
-    <div class="row text-center">
-      <div class="col-md-4">
-        <a href="how-to-assemble.html" class="card-link">
-          <div class="card">
-            <div class="card-body">
-              <img src="images/assembly card pic.jpg" alt="How to Assemble" class="img-fluid">
-              <h5 class="card-title mt-3">How to Assemble</h5>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-md-4">
-        <a href="rules.html" class="card-link">
-          <div class="card">
-            <div class="card-body">
-              <img src="images/spikeball rules card.jpg" alt="Rules" class="img-fluid">
-              <h5 class="card-title mt-3">Rules</h5>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="col-md-4">
-        <a href="contact.html" class="card-link">
-          <div class="card">
-            <div class="card-body">
-              <img src="images/contactpage card.png" alt="Contact Page" class="img-fluid">
-              <h5 class="card-title mt-3">Contact Page</h5>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="text-center py-3 bg-dark text-light">
-    <p>dkina15@gmail.com</p>
-    <p>&copy; 2024 Daniel Kinatukara</p>
-  </footer>
-
   <!-- Chatbot Section -->
   <div id="chatbot-container" class="chatbot-container">
     <div id="chatbot-header" class="chatbot-header">
@@ -182,8 +90,9 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Chatbot JS -->
+  <!-- Chatbot JavaScript -->
   <script>
+    // Chatbot toggle functionality
     document.addEventListener("DOMContentLoaded", () => {
       const chatbotContainer = document.getElementById("chatbot-container");
       const openChatbotButton = document.getElementById("open-chatbot");
@@ -192,31 +101,51 @@
       const userInput = document.getElementById("user-input");
       const messages = document.getElementById("chatbot-messages");
 
+      // Open chatbot
       openChatbotButton.addEventListener("click", () => {
         chatbotContainer.style.display = "flex";
         openChatbotButton.style.display = "none";
       });
 
+      // Close chatbot
       closeChatbotButton.addEventListener("click", () => {
         chatbotContainer.style.display = "none";
         openChatbotButton.style.display = "block";
       });
 
+      // Append messages to the chatbot
       const appendMessage = (message, sender) => {
         const messageElement = document.createElement("p");
         messageElement.classList.add(sender === "user" ? "user-message" : "bot-message");
         messageElement.textContent = message;
         messages.appendChild(messageElement);
-        messages.scrollTop = messages.scrollHeight;
+        messages.scrollTop = messages.scrollHeight; // Auto-scroll to the latest message
       };
 
-      const sendMessage = async () => {
+      // Handle user input
+      const handleUserInput = async () => {
         const message = userInput.value.trim();
         if (!message) return;
 
         appendMessage(message, "user");
         userInput.value = "";
 
-        try {
-          const response = await fetch("https
+        // Simulated bot response
+        setTimeout(() => {
+          appendMessage("I'm here to help! What would you like to know about Spikeball?", "bot");
+        }, 1000);
+      };
 
+      // Send button click event
+      sendButton.addEventListener("click", handleUserInput);
+
+      // Press Enter to send message
+      userInput.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+          handleUserInput();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
